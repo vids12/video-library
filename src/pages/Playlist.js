@@ -1,3 +1,12 @@
+import { useList } from "../DataProvider/VideoListProvider"
+
 export function Playlist() {
-    return <h1 className="sidebar-page">This is Playlist page</h1>
+    const { playlist } = useList();
+    console.log(playlist)
+    return <div className="sidebar-page">
+        <h1>Playlist</h1>
+        <ul>
+            {playlist.map(name=><li>{name}</li>)}
+        </ul>
+    </div>
 }

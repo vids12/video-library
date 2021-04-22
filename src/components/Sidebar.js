@@ -8,5 +8,7 @@ export function Sidebar() {
         <Link to="/playlist">PlayList</Link>
         <hr />
         <Link to="/watchlater">Watch Later</Link>
+        <hr />
+        <Link to="/likedvideos">Liked Videos</Link>
     </div>
 }

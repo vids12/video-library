@@ -1,8 +1,14 @@
+import { useState } from "react";
+import { useList } from "../DataProvider/VideoListProvider"
+
 export function Modal(){
+    const { setShowModal,playlist,setPlaylist } = useList();
+    const [customPlaylist,setCustomPlaylist] = useState(false);
+    const [newPlaylist,setNewPlaylist] = useState("");
     return <div class="modal">
         <div class="modal-header">
             <h4 class="modal-title">Save to...</h4>
-            <img src="./images/delete.svg" alt="close-icon" class="close-icon" />
+            <button onClick={()=> setShowModal(false)} className="close-btn">X</button>
         </div>
         <hr />
         <div class="modal-body">
@@ -10,12 +16,15 @@ export function Modal(){
         </div>
         <hr />
         <div class="modal-body">
-            <button>+ Create PlayList</button>
+            <button onClick={()=>setCustomPlaylist(true)}>+ Create PlayList</button>
         </div>
-        <hr />
-        <div>
-            <input placeholder="Enter Playlist Name"></input>
-            <button class="primary-btn">Create</button>
-        </div>
+        {customPlaylist && <><hr />
+        <div className="modal-body">
+            <input placeholder="Enter Playlist Name" value={newPlaylist} onChange={(e)=>setNewPlaylist(e.currentTarget.value)}></input>
+            <button class="primary-btn" onClick={()=>{
+                setPlaylist([...playlist,newPlaylist]);
+                setNewPlaylist("");
+            }}>Create</button>
+        </div></>}
     </div>
 }
