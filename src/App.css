@@ -1,5 +1,79 @@
+* {
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+}
 .App {
-  text-align: center;
+  font-family: sans-serif;
+}
+:root {
+  --primarycolor: black;
+  --secondarycolor: whitesmoke;
+  --greycolor: #818181;
 }
 
-/*  */
+.nav-bar {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--secondarycolor);
+  padding: 0.5rem;
+  max-width: 100%;
+  margin-top: auto;
+}
+
+.sidebar{
+  height: 100%;
+  width: 10rem;
+  position: fixed;
+  z-index: 1;
+  top: auto;
+  left: 0;
+  padding: 2.5rem;
+  background-color: var(--primarycolor);
+}
+.sidebar a{
+  padding: 1rem;
+  display: block;
+  text-decoration: none;
+  color: var(--greycolor);
+}
+.sidebar a:hover{
+  color:var(--secondarycolor);
+}
+hr{
+  border: 0.2px solid var(--greycolor);
+}
+.sidebar-page{
+  margin-left: 15rem;
+}
+.video{
+  margin: 2rem auto 0.5rem 4rem;
+}
+.video-heading{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 5rem;
+  margin-top: 1rem;
+}
+ .tooltip{
+  position: relative;
+}
+.tooltip-text{
+  /* visibility: hidden; */
+  width: 4rem;
+  border-radius: 0.8rem;
+  position: absolute;
+  background-color: var(--primarycolor);
+  color: var(--secondarycolor);
+  text-align: center;
+  padding: 0.5rem 0;
+  z-index: 1;
+  top: 125%;
+  right: 1%;
+} 
+/* .tooltip:hover .tooltip-text{
+   visibility: visible; 
+} */
+
