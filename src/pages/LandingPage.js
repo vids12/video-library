@@ -21,7 +21,7 @@ export function LandingPage(){
                             <img src={avatarImg} alt="avatar" className="avatar" />
                             <span style={{fontSize:"0.6rem"}}>{heading}</span>
                         </div>
-                        <Link to="/video">
+                        <Link to={`/video/${id}`} >
                             <button onClick={()=>setRoute(true)}>Watch Now</button>
                         </Link>
                     </li>
