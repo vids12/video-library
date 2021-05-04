@@ -4,11 +4,11 @@
   max-width: 100%;
 }
 .App {
-  font-family: sans-serif;
+  font-family: Lato;
 }
 :root {
   --primarycolor: black;
-  --secondarycolor: whitesmoke;
+  --secondarycolor: white;
   --greycolor: #818181;
 }
 
@@ -21,6 +21,7 @@
   padding: 0.5rem;
   max-width: 100%;
   margin-top: auto;
+  position: static;
 }
 
 .sidebar{
@@ -48,45 +49,15 @@ hr{
 .sidebar-page{
   margin-left: 15rem;
 }
-.video{
-  margin: 2rem auto 0.5rem 4rem;
+.watch-video-page{
+  margin: 2rem  auto 0 2rem ;
 }
-.video-heading{
+.video-header{
   display: flex;
   justify-content: space-between;
-  margin-right: 5rem;
-  margin-top: 1rem;
+  width: auto;
 }
- .tooltip{
-  position: relative;
-}
-.tooltip-text{
-  visibility: hidden;
-  width: 4rem;
-  border-radius: 0.8rem;
-  position: absolute;
-  background-color: var(--primarycolor);
-  color: var(--secondarycolor);
-  text-align: center;
-  padding: 0.5rem 0;
-  z-index: 1;
-  top: 125%;
-  right: 1%;
-} 
-/* .tooltip:hover .tooltip-text{
-   visibility: visible; 
-} */
-/* .modal-btn{
-    color: whitesmoke;
-    background-color: var(--primarycolor);
-    padding: 20px;
-    border-style: none;
-    border-radius:5px;
-    text-align: center;
-    cursor: pointer;
-    width: 20%; 
-     font-size: 25px; 
-} */
+
 .modal-header{
     display: flex;
     flex-direction: row;
@@ -96,10 +67,14 @@ hr{
 .modal{
     border: var(--primarycolor) 1px solid;
     width: 50%;
+    height: auto;
     border-radius: 2px;
     z-index: 2;
-    position: relative;
-    top: 0;
+    position: absolute;
+    top: 90%;
+    left: 30%;
+    background-color: var(--secondarycolor);
+
 }
 .modal-title{
     margin: 10px 0 0 10px;
@@ -109,6 +84,7 @@ hr{
     border-radius: 2rem;
     padding: 0.3rem;
     border-style: none;
+    background-color: var(--secondarycolor);
 } 
 .buttons{
     display: flex;
@@ -122,13 +98,136 @@ hr{
 .video-column{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 .avatar{
   height: 36px;
   width: 36px;
   border-radius: 100%;
+  max-width: 100%;
+  display: block;
 }
 .video-card{
-  margin: 1rem;
+  width: 16rem;
+  margin: 0.5rem;
+  height: auto;
+  justify-content: baseline;
+}
+ul{
+  list-style: none;
+}
+.video-heading{
+  font-size: 1rem;
+  line-height: 1.5rem;
+  max-height: 4rem;
+  padding-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.primary-btn {
+  color: var(--secondarycolor);
+  background-color: var(--primarycolor);
+  padding: 10px;
+  border-style: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  margin: 10px;
+}
+.secondary-btn {
+  color: var(--primaryarycolor);
+  border: 1px solid var(--primarycolor);
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--secondarycolor);
+  text-align: center;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.secondary-btn:hover {
+  background-color: var(--primarycolor);
+  color: var(--secondarycolor);
+}
+.search-div{
+  transform: translateY(0rem);
+}
+.search-page{
+  height: auto;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.5s;
+  z-index: 101;
+  padding-bottom: 50px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--secondarycolor);
+}
+.search-title{
+  font-size: 40px;
+  text-align: center;
+  color: black;
+  font-weight: 600;
+  margin-top: 2rem;
+  line-height: 1.2;
+  margin-bottom: 1em;
+}
+.search-box{
+  width: 90%;
+  transition-delay: .3s;
+  opacity: 1;
+  visibility: visible;
+  border-style: none;
+  border-bottom: 1px solid var(--greycolor);
+  margin: 2.5rem;
+}
+.search-close-btn{
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+.fas{
+  margin-right: 2rem;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  transition-duration: 0.05s;
+}
+.markdown-textarea{
+  border-radius: 2%;
+  border: 1px solid var(--greycolor);
 }
