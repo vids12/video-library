@@ -1,24 +1,40 @@
-import { useState } from "react";
 import { useList } from "../DataProvider/VideoListProvider";
+import { Modal } from "../components/Modal";
+import { useState } from "react";
 
-export function VideoCard({src,heading}) {
-    const [likeCount,setLikeCount] = useState(500);
-    const [dislikeCount,setDislikeCount] = useState(20);
-    const { setShowModal } = useList();
-    return  <li>
-            {console.log({src,heading})}
-            <iframe width="700" height="480" src={`${src} `}className="video" title="Youtube-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen="true" ></iframe>
-            <h5 style={{marginLeft:"4.2rem"}}>{heading}</h5>
-            <div className="video-heading">
-                <span style={{marginLeft:"4.2rem"}}>1,464,917 views • Nov 15, 2020</span>
-                <div>
-                    <i className="fa fa-thumbs-up tooltip" aria-hidden="true"  onClick={()=>setLikeCount(prev=>prev+1)}></i> {likeCount}
-                    <span className="tooltip-text">Like</span>
-                    <i class="fa fa-thumbs-down tooltip" aria-hidden="true" onClick={()=>setDislikeCount(prev=>prev+1)} ></i>{dislikeCount}
-                    <span className="tooltip-text">Dislike</span>
-                    <button className="tooltip" onClick={()=>setShowModal(true)}>Save to playlist</button>
-                    <span className="tooltip-text">Save</span>
+export function VideoCard({src,heading,views,id,channel_name,img}) {
+    const { dispatch,setWatchLaterList,watchLaterList,showModal,setNewPlaylist,newPlaylist } = useList();
+    const [customPlaylist,setCustomPlaylist] = useState(false);
+    return  <section className="watch-video-page">
+        <iframe className="iframe" src={`${src} `} title="Youtube-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen="true" ></iframe>
+        <h5 className="video-heading">{heading}</h5>
+        <div className="video-header">
+            <span>{views}</span>
+            <span>
+                <span className="tooltip">
+                    <button onClick={()=> setWatchLaterList(watchLaterList.concat({id,channel_name,heading,img}))} className="primary-btn">Add to watchLater</button>
+                    <span className="tooltiptext">Watch</span> 
+                </span>
+                <span className="tooltip">
+                    <button onClick={()=>setCustomPlaylist(true)}  className="primary-btn">+ Create PlayList</button>
+                    <span className="tooltiptext">Create</span> 
+                </span>
+                <span className="tooltip">
+                    <button className="secondary-btn" onClick={()=>dispatch({type:"SHOW_MODAL"})} style={{marginRight: "5rem"}}>Save to playlist</button>
+                    <span className="tooltiptext">Save</span> 
+                </span>
+            </span>
+        </div>
+        {customPlaylist && <>
+                <div className="modal-body">
+                <input placeholder="Enter Playlist Name" value={newPlaylist} onChange={(e)=>setNewPlaylist(e.currentTarget.value)}></input>
+                <button class="primary-btn" onClick={()=>{
+                    dispatch({type:"ADD_TO_CUSTOM_PLAYLIST", payload:{newPlaylist,id,heading,img,channel_name}});
+                    setNewPlaylist("");
+                }}>Create</button>
                 </div>
-            </div>
-       </li>
+            </>
+        }
+        {showModal && <Modal id={id}/>}
+    </section>
 }

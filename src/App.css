@@ -21,12 +21,13 @@
   padding: 0.5rem;
   max-width: 100%;
   margin-top: auto;
-  position: static;
+  position: sticky;
+  top: 0;
 }
 
 .sidebar{
   height: 100%;
-  width: 10rem;
+  width: 5rem;
   position: fixed;
   z-index: 1;
   top: auto;
@@ -47,7 +48,7 @@ hr{
   border: 0.2px solid var(--greycolor);
 }
 .sidebar-page{
-  margin-left: 15rem;
+  margin-left: 12rem;
 }
 .watch-video-page{
   margin: 2rem  auto 0 2rem ;
@@ -69,16 +70,28 @@ hr{
     width: 50%;
     height: auto;
     border-radius: 2px;
-    z-index: 2;
-    position: absolute;
-    top: 90%;
-    left: 30%;
+    z-index: 1010;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
     background-color: var(--secondarycolor);
 
 }
 .modal-title{
     margin: 10px 0 0 10px;
     font-size: 1.5rem;
+}
+.modal-overlay {
+  z-index: 1000;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
 }
 .close-btn{
     border-radius: 2rem;
@@ -211,7 +224,10 @@ ul{
   left: 50%;
   margin-left: -60px;
 }
-
+.iframe{
+  height: 50rem;
+  width: 50rem;
+}
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
@@ -227,7 +243,57 @@ ul{
   visibility: visible;
   transition-duration: 0.05s;
 }
-.markdown-textarea{
-  border-radius: 2%;
-  border: 1px solid var(--greycolor);
+.video-header button{
+  width: max-content;
+}
+.playlist-name-header{
+  font-weight: bold;
+  font-size: 2rem;
+}
+.playlist-card{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem;
+}
+.playlist-header{
+  line-height: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: first baseline;
+}
+@media only screen and (max-width: 600px){
+  * {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+  }
+  .sidebar{
+    width: 3rem;
+    padding: 0.5rem;
+    text-align: center;
+  }
+  .sidebar a{
+    padding: 0.5rem;
+    margin: 0.5rem;
+  }
+  .sidebar-page{
+    margin-left: 5rem;
+  }
+  .playlist-img{
+    height: 9rem;
+    width: 8rem;
+  }
+  .playlist-card{
+    margin: o.5rem;
+  }
+  .playlist-header p{
+    margin-left: 0.5rem;
+  }
+  .iframe{
+    width: 20rem;
+    height:20rem;
+  }
+  .secondary-btn{
+    width: max-content;
+  }
 }
