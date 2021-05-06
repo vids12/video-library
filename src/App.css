@@ -275,6 +275,7 @@ ul{
   .sidebar a{
     padding: 0.5rem;
     margin: 0.5rem;
+    font-size: 0.5rem;
   }
   .sidebar-page{
     margin-left: 5rem;
