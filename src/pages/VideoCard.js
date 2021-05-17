@@ -1,40 +1,31 @@
 import { useList } from "../DataProvider/VideoListProvider";
 import { Modal } from "../components/Modal";
+import { PlayListModal } from "../components/PlaylistModal";
 import { useState } from "react";
 
-export function VideoCard({src,heading,views,id,channel_name,img}) {
-    const { dispatch,setWatchLaterList,watchLaterList,showModal,setNewPlaylist,newPlaylist } = useList();
-    const [customPlaylist,setCustomPlaylist] = useState(false);
+export function VideoCard({src,heading,views,id,channel_name,img,desc}) {
+    const { dispatch: modalDispatch,showModal,dispatch: PlayListModalDispatch,showPlaylistModal } = useList();
+    const [ showDescription,setShowDescription ] = useState(false); 
+    
     return  <section className="watch-video-page">
-        <iframe className="iframe" src={`${src} `} title="Youtube-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen="true" ></iframe>
+        <iframe className="iframe" src={`${src} `} title="Youtube-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} ></iframe>
         <h5 className="video-heading">{heading}</h5>
         <div className="video-header">
             <span>{views}</span>
             <span>
                 <span className="tooltip">
-                    <button onClick={()=> setWatchLaterList(watchLaterList.concat({id,channel_name,heading,img}))} className="primary-btn">Add to watchLater</button>
-                    <span className="tooltiptext">Watch</span> 
-                </span>
-                <span className="tooltip">
-                    <button onClick={()=>setCustomPlaylist(true)}  className="primary-btn">+ Create PlayList</button>
+                    <button onClick={() => PlayListModalDispatch({type:"SHOW_PLAYLIST_MODAL"}) }  className="primary-btn">+ Create PlayList</button>
                     <span className="tooltiptext">Create</span> 
                 </span>
                 <span className="tooltip">
-                    <button className="secondary-btn" onClick={()=>dispatch({type:"SHOW_MODAL"})} style={{marginRight: "5rem"}}>Save to playlist</button>
+                    <button className="secondary-btn" onClick={()=>modalDispatch({type:"SHOW_MODAL"})} style={{marginRight: "5rem"}}>Save to playlist</button>
                     <span className="tooltiptext">Save</span> 
                 </span>
             </span>
         </div>
-        {customPlaylist && <>
-                <div className="modal-body">
-                <input placeholder="Enter Playlist Name" value={newPlaylist} onChange={(e)=>setNewPlaylist(e.currentTarget.value)}></input>
-                <button class="primary-btn" onClick={()=>{
-                    dispatch({type:"ADD_TO_CUSTOM_PLAYLIST", payload:{newPlaylist,id,heading,img,channel_name}});
-                    setNewPlaylist("");
-                }}>Create</button>
-                </div>
-            </>
-        }
+        {showPlaylistModal && <PlayListModal  id={id} heading= {heading} channel_name={channel_name} img={img} />}
         {showModal && <Modal id={id}/>}
+        { showDescription ? <i class="fa fa-caret-down" onClick={()=>setShowDescription(false)}></i> : <i class="fa fa-caret-up" onClick={()=>setShowDescription(true)}></i>}
+        {showDescription && <p>{desc}</p>}
     </section>
 }

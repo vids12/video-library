@@ -58,40 +58,59 @@ hr{
   justify-content: space-between;
   width: auto;
 }
-
+.playlist-modal{
+  width: 40%;
+  height: 30%;
+  border-radius: 2px;
+  z-index: 1010;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--secondarycolor);
+  padding: 0.5rem;
+}
+.playlist-input{
+  margin: 3rem;
+  width: 50%;
+  border-style: none;
+  border-bottom: var(--greycolor) 1px solid;
+}
 .modal-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    vertical-align: centre;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  vertical-align: centre;
 }
 .modal{
-    border: var(--primarycolor) 1px solid;
-    width: 50%;
-    height: auto;
-    border-radius: 2px;
-    z-index: 1010;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    background-color: var(--secondarycolor);
-
+  width: 15%;
+  height: auto;
+  border-radius: 2px;
+  z-index: 1010;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--secondarycolor);
+  padding: 0.5rem;
 }
 .modal-title{
     margin: 10px 0 0 10px;
     font-size: 1.5rem;
+    font-weight: 500;
 }
 .modal-overlay {
   z-index: 1000;
-
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-
+  background-color: #E5E7EB;
+}
+.checkbox{
+  margin: 0.5rem;
+  cursor: pointer;
 }
 .close-btn{
     border-radius: 2rem;
@@ -169,7 +188,7 @@ ul{
   opacity: 1;
   visibility: visible;
   transition: all 0.5s;
-  z-index: 101;
+  z-index: 1000;
   padding-bottom: 50px;
   width: 100%;
   position: fixed;

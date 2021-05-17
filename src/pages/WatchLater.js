@@ -2,7 +2,7 @@ import { useList } from "../DataProvider/VideoListProvider"
 import { Link } from "react-router-dom";
 
 export function WatchLater() {
-    const { watchLaterList,setWatchLaterList } = useList();
+    const { watchLaterList,dispatch: watchLaterListDispatch } = useList();
     return <ul className="sidebar-page">
         <h1>WatchList</h1>
         { watchLaterList.map(({id,channel_name,heading,img}) =>{
@@ -16,7 +16,7 @@ export function WatchLater() {
                     <button className="primary-btn">Watch Now</button>
                 </Link>
                 <button
-                    onClick={() =>setWatchLaterList(watchLaterList.filter((item) =>item.id === id ? !item  :  item) )}
+                    onClick={() =>watchLaterListDispatch({type:"REMOVE_FROM_WATCH_LIST",payload: id})}
                     className="secondary-btn"
                 >
                     Remove

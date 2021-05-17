@@ -1,32 +1,17 @@
 import { useList } from "../DataProvider/VideoListProvider";
-import { Link } from "react-router-dom";
+import { VideoList } from "../components/VideoList";
 
-function VideoList({id,channel_name,heading,img}){
-    return <li key={id} className="playlist-card">
-        <img src={`${img}`} alt="Image" className="playlist-img"/>
-        <div className="playlist-header">
-            <h3 className="video-heading">{heading}</h3>
-            <p>{channel_name}</p>
-            <Link to={`/watch/${id}`} >
-                <button className="primary-btn">Watch Now</button>
-            </Link>
-            
-        </div>
-        
-    </li>
-}
 export function Playlist() {
-    const { playlist } = useList();
-    console.log(playlist);
+    const { playlist,dispatch: playlistDispatch } = useList();
     return <div className="sidebar-page">
         <h1 style={{textAlign:"center"}}>Playlist</h1>
-        {console.log(playlist)}
         <ul style={{marginLeft:"1rem"}}>
-            {playlist.map(({id,name,videoes})=>{
-                    return <li key= { id }>
+            {playlist.map(({pid,name,videoes})=>{
+                    return <li key= { pid }>
                         <h3 className="playlist-name-header">{name}</h3>
+                        <button className="secondary-btn" onClick={() => playlistDispatch({type:"REMOVE_PLAYLIST",payload: pid})}>Delete Playlist</button>
                         <ul>
-                            {videoes.map(obj=><VideoList {...obj} />) }
+                            {videoes.map(obj=><VideoList {...obj} pid={pid} />) }
                         </ul>
                     </li>
                 })

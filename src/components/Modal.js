@@ -1,29 +1,23 @@
-import { useState } from "react";
 import { useList } from "../DataProvider/VideoListProvider";
-import { list } from "../DataProvider/data";
 
 export function Modal({id}){
-    const { playlist,dispatch } = useList();
-    function getVideo(list,id){
-        return list.find(obj=>obj.id===id)
-    }
-    const video = getVideo(list,id);
-    console.log(video);
+    const { playlist,dispatch: modalDispatch,dispatch: watchLaterListDispatch,dispatch: playlistDispatch,watchLaterList } = useList();
     return <>
         <div class="modal">
         <div class="modal-header">
             <h4 class="modal-title">Save to...</h4>
-            <button onClick={()=>dispatch({type:"CLOSE_MODAL"})} className="close-btn">X</button>
+            <button onClick={() => modalDispatch({type:"CLOSE_MODAL"})} className="close-btn">X</button>
         </div>
-        <hr />
         <div class="modal-body">
+            <label>
+                <input type="checkbox" onChange={() => watchLaterListDispatch({type:"ADD_TO_WATCH_LATER",payload: id})} className="checkbox" checked={watchLaterList.find(obj=> obj.id === id) ? true : false }></input>
+            </label>Watch Later
             <ul>
-            {playlist.map(({name,pid,videoes})=> <li key={pid}>
-                {console.log(videoes)}
-                <label>
-                    <input type="checkbox" onChange={()=>videoes.concat(video)} ></input>{name}
-                </label>
-            </li>
+                {playlist.map(({name,pid})=> <li key={pid}>
+                    <label>
+                        <input type="checkbox" onChange={() => playlistDispatch({type:"ADD_TO_EXISTING_CUSTOM_PLAYLIST",payload: {id,pid}})} className="checkbox" checked={playlist.find(obj => obj.pid===pid) ? true : false} ></input>
+                    </label>{name}
+                </li>
             )}
             </ul>
         </div>
