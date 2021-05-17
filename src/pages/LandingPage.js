@@ -13,7 +13,7 @@ export function LandingPage(){
             {
                 searchedData.map(({id,avatarImg,heading,img}) =>{
                     return <li key={id} className="video-card">
-                        <img src={`${img}`} alt="Image" />
+                        <img src={`${img}`} alt="img" />
                         <div className="video-header">
                             <img src={`${avatarImg}`} alt="avatar" className="avatar" />
                             <span className="video-heading">{heading}</span>
