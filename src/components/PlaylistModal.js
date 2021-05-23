@@ -10,7 +10,7 @@ export function PlayListModal({id,heading,channel_name,img}){
             </div>
             <input placeholder="Enter Playlist Name" value={newPlaylist} onChange={(e)=>setNewPlaylist(e.target.value)} className="playlist-input"></input>
             <button class="primary-btn" onClick={()=>{
-                playlistDispatch({type:"ADD_TO_CUSTOM_PLAYLIST",type:"CLOSE_PLAYLIST_MODAL",payload:{newPlaylist,id,heading,img,channel_name}});
+                playlistDispatch({type:"ADD_TO_CUSTOM_PLAYLIST",payload:{newPlaylist,id,heading,img,channel_name}});
                 setNewPlaylist("");
             }}>Create</button>
         </div>
