@@ -2,11 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { BrowserRouter as Router} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import { VideoListProvider } from './DataProvider/VideoListProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <VideoListProvider>
+    <Router>
+      <App />
+    </Router>
+    </VideoListProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
